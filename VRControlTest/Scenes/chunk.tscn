@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://luufgowvwex1"]
+
+[ext_resource type="Texture2D" uid="uid://b5qwc0tyj3luk" path="res://Resources/Art/Temporary/Test Terrain_1m x 1m.png" id="1_mbpks"]
+[ext_resource type="Script" path="res://Scenes/chunk.gd" id="1_ps7sp"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ek2ud"]
+size = Vector3(100, 10, 100)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hiuk0"]
+albedo_texture = ExtResource("1_mbpks")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ea268"]
+size = Vector2(100, 100)
+
+[node name="Chunk" type="StaticBody3D"]
+script = ExtResource("1_ps7sp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+shape = SubResource("BoxShape3D_ek2ud")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_hiuk0")
+mesh = SubResource("PlaneMesh_ea268")
