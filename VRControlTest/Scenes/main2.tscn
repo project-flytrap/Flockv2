@@ -23,12 +23,9 @@ sky_material = SubResource("ProceduralSkyMaterial_geccn")
 
 [sub_resource type="Environment" id="Environment_j8h1b"]
 background_mode = 2
-background_energy_multiplier = 1.42
 sky = SubResource("Sky_ieh3x")
 ambient_light_color = Color(1, 0.964706, 0.223529, 1)
-ambient_light_energy = 1.45
 tonemap_mode = 2
-tonemap_exposure = 1.14
 fog_light_color = Color(0.517647, 0.552941, 0.607843, 1)
 fog_light_energy = 1.57
 fog_sun_scatter = 0.31
@@ -43,7 +40,6 @@ fractal_octaves = 4
 fractal_lacunarity = 3.0
 fractal_gain = 0.3
 fractal_weighted_strength = 0.5
-domain_warp_enabled = true
 domain_warp_type = 2
 domain_warp_amplitude = 15.0
 domain_warp_frequency = 0.005
@@ -54,12 +50,16 @@ domain_warp_fractal_gain = 0.6
 script = ExtResource("1_h2bth")
 
 [node name="XROrigin3D" type="XROrigin3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 100, 0)
+world_scale = 0.75
+current = true
 
 [node name="XRWingR" type="XRController3D" parent="XROrigin3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, -0.5)
 tracker = &"right_hand"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="XROrigin3D/XRWingR"]
+visible = false
 mesh = SubResource("BoxMesh_l3knt")
 
 [node name="MovementTurn" parent="XROrigin3D/XRWingR" instance=ExtResource("2_6vk20")]
@@ -74,16 +74,18 @@ tracker = &"left_hand"
 strafe = true
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="XROrigin3D/XRWingL"]
+visible = false
 mesh = SubResource("BoxMesh_l3knt")
 skeleton = NodePath("../../XRWingR")
 
 [node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
+current = true
+fov = 90.0
 
 [node name="Vignette" parent="XROrigin3D/XRCamera3D" instance=ExtResource("4_sjsfk")]
-radius = 0.3
-fade = 0.1
-auto_fade_delay = 0.1
+fade = 0.4
+steps = 64
 
 [node name="VRCommonShaderCache" parent="XROrigin3D/XRCamera3D" instance=ExtResource("5_lt1ih")]
 
@@ -99,8 +101,9 @@ glide_fall_speed = -5.0
 glide_forward_speed = 20.0
 horizontal_slew_rate = 3.0
 turn_with_roll = true
-roll_turn_speed = 1.5
+roll_turn_speed = 1.4
 wings_impulse = true
+flap_min_speed = 0.25
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_j8h1b")
@@ -108,17 +111,15 @@ environment = SubResource("Environment_j8h1b")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.871898, 0.489687, 0, -0.489687, 0.871898, 0, 9.51579, 11.7278)
 light_color = Color(1, 0.819608, 0.596078, 1)
-light_energy = 2.0
-light_indirect_energy = 2.0
 light_volumetric_fog_energy = 2.517
 
 [node name="World" type="Node3D" parent="."]
 
 [node name="TerrainGen" type="Node3D" parent="World" node_paths=PackedStringArray("viewer")]
 script = ExtResource("9_mb5k7")
-chunkSize = 529
-terrain_height = 200
-view_distance = 2000
+chunkSize = 900
+terrain_height = 220
+view_distance = 4000
 viewer = NodePath("../../XROrigin3D/@CharacterBody3D@31456")
 chunk_mesh_scene = ExtResource("10_1drph")
 noise = SubResource("FastNoiseLite_7tl6l")

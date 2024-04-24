@@ -359,10 +359,10 @@ func request_jump(skip_jump_velocity := false):
 		return
 
 	# Skip if the ground is too steep to jump
-	var max_slope := XRToolsGroundPhysicsSettings.get_jump_max_slope(
-			ground_physics, default_physics)
-	if ground_angle > max_slope:
-		return
+	#var max_slope := XRToolsGroundPhysicsSettings.get_jump_max_slope(
+	#		ground_physics, default_physics)
+	#if ground_angle > max_slope:
+	#	return
 
 	# Perform the jump
 	if !skip_jump_velocity:

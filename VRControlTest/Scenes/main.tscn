@@ -31,6 +31,7 @@ ambient_light_energy = 1.45
 script = ExtResource("1_uinod")
 
 [node name="XROrigin3D" type="XROrigin3D" parent="."]
+world_scale = 0.75
 
 [node name="XRWingR" type="XRController3D" parent="XROrigin3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, -0.5)

@@ -4,7 +4,7 @@
             "outputFile": "com.godot.game-mergeDebugResources-9:/values-pl/values-pl.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\ryank\\OneDrive\\Documents\\VRControlTest\\android\\build\\res\\values-pl\\godot_project_name_string.xml",
+                    "source": "C:\\Users\\ryank\\OneDrive\\Documents\\Flockv2\\VRControlTest\\android\\build\\res\\values-pl\\godot_project_name_string.xml",
                     "from": {
                         "startLines": "3",
                         "startColumns": "1",
